@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Unsafe Command Executor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .command-form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 8px;
+        }
+        input[type="submit"] {
+            padding: 8px 15px;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Unsafe Linux Command Executor</h1>
+        <p style="color: red; font-weight: bold;">
+            WARNING: This application is UNSAFE and executes ANY command on the server.
+        </p>
+        
+        <div class="command-form">
+            <form method="POST">
+                <label for="command">Enter command:</label><br>
+                <input type="text" id="command" name="command" placeholder="Any Linux command..." required>
+                <input type="submit" value="Execute">
+            </form>
+        </div>
+        
+        {% if output %}
+            <h3>Command Output:</h3>
+            <pre>{{ output }}</pre>
+        {% endif %}
+    </div>
+</body>
+</html>
