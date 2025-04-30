@@ -1,0 +1,52 @@
+<!-- templates/result.html -->
+{% extends "layout.html" %}
+
+{% block content %}
+    <h2>Your Arranged List</h2>
+    <div id="result-list">
+        <ol>
+            {% for item in items %}
+                <li>{{ item }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+    
+    <div style="margin-top: 20px; display: flex; gap: 10px;">
+        <button id="copy-button" type="button">Copy to Clipboard</button>
+        <span id="copy-message" style="display: none; color: green; align-self: center;">Copied to clipboard!</span>
+    </div>
+    
+    <textarea id="hidden-copy-text" style="position: absolute; left: -9999px;">{% for item in items %}{{ item }}{% if not loop.last %}
+{% endif %}{% endfor %}</textarea>
+    
+    <a href="{{ url_for('index') }}" class="back-link">Start Over</a>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const copyButton = document.getElementById('copy-button');
+            const copyMessage = document.getElementById('copy-message');
+            const hiddenCopyText = document.getElementById('hidden-copy-text');
+            
+            copyButton.addEventListener('click', function() {
+                // Select the text
+                hiddenCopyText.select();
+                
+                // Copy to clipboard
+                navigator.clipboard.writeText(hiddenCopyText.value)
+                    .then(() => {
+                        // Show success message
+                        copyMessage.style.display = 'inline';
+                        
+                        // Hide message after 2 seconds
+                        setTimeout(() => {
+                            copyMessage.style.display = 'none';
+                        }, 2000);
+                    })
+                    .catch(err => {
+                        console.error('Could not copy text: ', err);
+                        alert('Failed to copy to clipboard. Please try again.');
+                    });
+            });
+        });
+    </script>
+{% endblock %}

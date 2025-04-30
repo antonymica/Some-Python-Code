@@ -1,0 +1,64 @@
+<!-- templates/arrange.html -->
+{% extends "layout.html" %}
+
+{% block head %}
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.14.0/Sortable.min.js"></script>
+{% endblock %}
+
+{% block content %}
+    <h2>Drag to rearrange items</h2>
+    <p class="instructions">Click and drag the items to rearrange them in your preferred order</p>
+    
+    <form id="arrangeForm" method="POST">
+        <div id="sortable-list">
+            {% for item in items %}
+                <div class="item" data-value="{{ item }}">
+                    <input type="hidden" name="items[]" value="{{ item }}">
+                    {{ item }}
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit" style="margin-top: 20px;">Save Order</button>
+    </form>
+    
+    <a href="{{ url_for('index') }}" class="back-link">Start Over</a>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var sortableList = document.getElementById('sortable-list');
+            
+            var sortable = new Sortable(sortableList, {
+                animation: 150,
+                ghostClass: 'sortable-ghost',
+                onEnd: function(evt) {
+                    // Update the hidden input values after reordering
+                    updateFormValues();
+                }
+            });
+            
+            function updateFormValues() {
+                // Get all items after they've been reordered
+                var items = Array.from(document.querySelectorAll('.item')).map(function(item) {
+                    return item.getAttribute('data-value');
+                });
+                
+                // Update hidden inputs
+                var hiddenInputs = document.querySelectorAll('input[name="items[]"]');
+                for (var i = 0; i < hiddenInputs.length; i++) {
+                    hiddenInputs[i].value = items[i];
+                }
+                
+                // Optionally, send the new order to the server using AJAX
+                fetch('/update_order', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({items: items})
+                })
+                .then(response => response.json())
+                .then(data => console.log('Order updated:', data));
+            }
+        });
+    </script>
+{% endblock %}

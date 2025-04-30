@@ -1,0 +1,94 @@
+<!-- templates/layout.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Arranger</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .container {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        #copy-button {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        #copy-button::before {
+            content: "📋";
+        }
+        .item {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            cursor: move;
+        }
+        .item:hover {
+            background-color: #f1f1f1;
+        }
+        .sortable-ghost {
+            opacity: 0.4;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #3498db;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .instructions {
+            margin-bottom: 20px;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="container">
+        <h1>List Arranger</h1>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

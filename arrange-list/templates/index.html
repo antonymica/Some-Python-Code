@@ -1,0 +1,10 @@
+<!-- templates/index.html -->
+{% extends "layout.html" %}
+
+{% block content %}
+    <p class="instructions">Enter your items separated by commas (e.g., "apple, banana, orange")</p>
+    <form method="POST">
+        <input type="text" name="items" placeholder="Enter items separated by commas" required>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
