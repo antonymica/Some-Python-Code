@@ -1,0 +1,6 @@
+flask
+pyotp
+qrcode
+flask-sqlalchemy
+flask-login
+pillow
