@@ -1,0 +1,63 @@
+version: '3.8'
+
+services:
+  ldap-server:
+    image: bitnami/openldap:latest
+    container_name: openldap
+    restart: unless-stopped
+    ports:
+      - "389:1389"
+      - "636:1636"
+    environment:
+      - LDAP_ROOT=dc=mycompany,dc=com
+      - LDAP_ADMIN_USERNAME=admin
+      - LDAP_ADMIN_PASSWORD=adminpassword
+      - LDAP_CUSTOM_LDIF_DIR=/ldif/custom
+      - LDAP_SKIP_DEFAULT_TREE=yes
+      - LDAP_ENABLE_TLS=no
+      - LDAP_DEBUG_LEVEL=256
+    volumes:
+      - ./ldap/ldif:/ldif/custom
+      - openldap_data:/bitnami/openldap
+    networks:
+      - ldap-network
+    healthcheck:
+      test: ["CMD", "ldapsearch", "-x", "-H", "ldap://localhost:1389", "-b", "dc=mycompany,dc=com"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  flask-app:
+    build: 
+      context: ./flask-app
+      args:
+        - PYTHON_VERSION=3.9
+    container_name: ldap-manager
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+      - LDAP_URI=ldap://ldap-server:1389
+      - LDAP_BASE_DN=dc=mycompany,dc=com
+      - LDAP_ADMIN_DN=cn=admin,dc=mycompany,dc=com
+      - LDAP_ADMIN_PASSWORD=adminpassword
+      - LDAP_USER_OU=users
+      - LDAP_GROUP_OU=groups
+    depends_on:
+      ldap-server:
+        condition: service_healthy
+    networks:
+      - ldap-network
+
+networks:
+  ldap-network:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.20.0.0/24
+
+volumes:
+  openldap_data:
+    name: openldap_data

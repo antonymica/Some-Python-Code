@@ -1,0 +1,33 @@
+dn: dc=mycompany,dc=com
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+o: My Company
+dc: mycompany
+
+dn: cn=admin,dc=mycompany,dc=com
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: LDAP Administrator
+userPassword: {SSHA}jJxFWdJg+ZRZas3+u0pQY9e7YhNlMjQ3
+
+dn: ou=users,dc=mycompany,dc=com
+objectClass: organizationalUnit
+ou: users
+
+dn: ou=groups,dc=mycompany,dc=com
+objectClass: organizationalUnit
+ou: groups
+
+dn: uid=user1,ou=users,dc=mycompany,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+uid: user1
+cn: User One
+sn: One
+mail: user1@mycompany.com
+userPassword: {SSHA}jJxFWdJg+ZRZas3+u0pQY9e7YhNlMjQ3
+uidNumber: 1000
+gidNumber: 1000
+homeDirectory: /home/user1
