@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Collecte de Données</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Bienvenue</h1>
+    <p>Nous collectons quelques informations techniques sur votre navigateur.</p>
+
+    <script>
+        async function collectData() {
+            const data = {
+                userAgent: navigator.userAgent,
+                language: navigator.language,
+                platform: navigator.platform,
+                screen: {
+                    width: screen.width,
+                    height: screen.height
+                },
+                timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                hardware: {
+                    cores: navigator.hardwareConcurrency || "N/A",
+                    memory: navigator.deviceMemory || "N/A"
+                }
+            };
+
+            await fetch("/api/collect", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            });
+        }
+
+        collectData();
+    </script>
+</body>
+</html>

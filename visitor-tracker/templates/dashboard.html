@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Tableau de Bord</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Visiteurs : {{ count }}</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>User-Agent</th>
+                <th>Langue</th>
+                <th>Plateforme</th>
+                <th>Résolution</th>
+                <th>Fuseau horaire</th>
+                <th>CPU</th>
+                <th>RAM</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for v in visitors %}
+            <tr>
+                <td>{{ v.timestamp }}</td>
+                <td>{{ v.userAgent }}</td>
+                <td>{{ v.language }}</td>
+                <td>{{ v.platform }}</td>
+                <td>{{ v.screen.width }}x{{ v.screen.height }}</td>
+                <td>{{ v.timezone }}</td>
+                <td>{{ v.hardware.cores }}</td>
+                <td>{{ v.hardware.memory }} Go</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

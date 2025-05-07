@@ -1,0 +1,32 @@
+[
+    {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+        "language": "en-US",
+        "platform": "Linux x86_64",
+        "screen": {
+            "width": 1366,
+            "height": 768
+        },
+        "timezone": "Indian/Antananarivo",
+        "hardware": {
+            "cores": 4,
+            "memory": "N/A"
+        },
+        "timestamp": "2025-05-07T13:29:29.218663"
+    },
+    {
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
+        "language": "en-US",
+        "platform": "Linux x86_64",
+        "screen": {
+            "width": 1366,
+            "height": 768
+        },
+        "timezone": "Indian/Antananarivo",
+        "hardware": {
+            "cores": 4,
+            "memory": 8
+        },
+        "timestamp": "2025-05-07T13:30:20.329050"
+    }
+]
