@@ -1,0 +1,195 @@
+/* Reset et styles de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.2em;
+    margin-bottom: 30px;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+}
+
+/* Styles du formulaire */
+.form-container {
+    background-color: #f9f9f9;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group label {
+    margin-bottom: 0;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-group input {
+    margin-right: 10px;
+}
+
+/* Boutons */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+.download-btn {
+    background-color: #2ecc71;
+    margin-top: 20px;
+}
+
+.download-btn:hover {
+    background-color: #27ae60;
+}
+
+/* Résultats */
+.results-container {
+    margin-top: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+.password-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.password-item {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    position: relative;
+    word-break: break-all;
+}
+
+.password-item:hover {
+    background-color: #e0e0e0;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 3px 6px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    background-color: #2980b9;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .form-container {
+        padding: 15px;
+    }
+    
+    .password-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Ajouts/modifications par rapport à la version précédente */
+
+.hint {
+    display: block;
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 5px;
+}
+
+/* Amélioration de l'affichage des mots de passe */
+.password-item {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    position: relative;
+    word-break: break-all;
+    font-family: monospace;
+    font-size: 1.1em;
+}
+
+/* Style pour mettre en évidence les mots de base dans le mot de passe */
+.password-item .base-word {
+    color: #e74c3c;
+    font-weight: bold;
+}

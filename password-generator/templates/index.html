@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Mots de Passe WiFi Personnalisés</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Générateur de Mots de Passe WiFi Personnalisés</h1>
+        
+        <div class="form-container">
+            <div class="form-group">
+                <label for="base-words">Mots à inclure (séparés par des virgules):</label>
+                <input type="text" id="base-words" placeholder="ex: maison,chien,123">
+                <small class="hint">Ces mots seront inclus dans votre mot de passe</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="count">Nombre de mots de passe à générer:</label>
+                <input type="number" id="count" min="1" max="50" value="5">
+            </div>
+            
+            <div class="form-group">
+                <label for="length">Longueur totale du mot de passe:</label>
+                <input type="number" id="length" min="8" max="32" value="12">
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <label>
+                    <input type="checkbox" id="uppercase" checked>
+                    Inclure des majuscules (A-Z)
+                </label>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <label>
+                    <input type="checkbox" id="numbers" checked>
+                    Inclure des chiffres (0-9)
+                </label>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <label>
+                    <input type="checkbox" id="special-chars" checked>
+                    Inclure des caractères spéciaux (!@#$...)
+                </label>
+            </div>
+            
+            <button id="generate-btn" class="btn">Générer des Mots de Passe</button>
+        </div>
+        
+        <div id="results" class="results-container hidden">
+            <h2>Mots de Passe Générés</h2>
+            <div id="password-list" class="password-list"></div>
+            <button id="download-btn" class="btn download-btn">Télécharger en CSV</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
